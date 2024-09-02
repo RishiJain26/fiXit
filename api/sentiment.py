@@ -1,5 +1,4 @@
 from flask import Flask, jsonify,request
-from transformers import pipeline
 import re
 import os
 import requests
