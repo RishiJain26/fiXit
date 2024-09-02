@@ -30,19 +30,22 @@ if authentication_status:
 
         if st.button("Analyze Sentiment"):
             response = requests.post("http://127.0.0.1:5000/",json = {"transcript":transcript})
-            print(response)
+            # print(response)
             if response.status_code == 200:
                 sentiment_result = response.json()
                 st.write("Sentiment Analysis Result:")
                 for res in sentiment_result:
                     st.write(f"**Speaker**: {res['speaker']}")
                     st.write(f"**Text**: {res['text']}")
-                    st.write(f"**Sentiment**: {res['score']['label']} (Score: {res['score']['score']:.2f})")
+                    if isinstance(res['score'], dict) and 'label' in res['score'] and 'score' in res['score']:
+                        st.write(f"**Sentiment**: {res['score']['label']} (Score: {res['score']['score']:.2f})")
+                    else:
+                        st.write(f"**Sentiment**: Data not available")
                     st.write("---")
-                fig1, ax1 = plt.subplots()
-
-                sentiments = [res['score']['label'] for res in sentiment_result]
+                sentiments = [res['score']['label'] for res in sentiment_result if isinstance(res['score'], dict)]
                 sentiment_counts = pd.Series(sentiments).value_counts()
+                
+                fig1, ax1 = plt.subplots()
 
                 ax1.pie(sentiment_counts, labels=sentiment_counts.index, autopct='%1.1f%%', colors=['green', 'red', 'grey'])
                 ax1.axis('equal')
