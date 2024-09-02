@@ -1,0 +1,15 @@
+credentials:
+  usernames:
+    johndoe:
+      name: abc
+      password: $2b$12$l9wqK00OHlSvSDoVPpnzveGjCaOELJDo4GGIuwsY8RnXjE0T4B7YK
+    efgh:
+      name: efgh
+      password: $2b$12$mg9e6.WQ/YNP/sG5hzHNxuxkQ3jkKqi0GYlzfg5xPJVXgcpzYpEVG
+cookie:
+  expiry_days: 0
+  name: some_cookie_name
+  key: some_signature_key
+preauthorized:
+  emails: []
+
