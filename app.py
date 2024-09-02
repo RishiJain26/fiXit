@@ -29,7 +29,7 @@ if authentication_status:
         transcript = uploaded_file.read().decode('utf-8')
 
         if st.button("Analyze Sentiment"):
-            response = requests.post("http://127.0.0.1:5000/",json = {"transcript":transcript})
+            response = requests.post("https://fixit-xnvm.onrender.com",json = {"transcript":transcript})
             # print(response)
             if response.status_code == 200:
                 sentiment_result = response.json()
